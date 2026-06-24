@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café L'Aura | 찰나의 머무름, 영원한 여운</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Serif KR for elegance, Gothic A1 for clean body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons for premium look -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Noto Serif KR"', 'serif'],
+                        sans: ['"Gothic A1"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#FDFBF7',  /* Alabaster Warm White */
+                            100: '#F7F3EB',
+                            200: '#EFE7DA',
+                            300: '#DFD1BD',
+                            400: '#C5A880', /* Signature Champagne Gold */
+                            500: '#AA8B60',
+                            600: '#8E6F45',
+                            700: '#6E5330',
+                            800: '#4A3720',
+                            900: '#1C1917', /* Charcoal Black */
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slow-zoom': 'slowZoom 20s ease-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slowZoom: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.08)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #1C1917;
+            font-family: 'Gothic A1', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A880;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AA8B60;
+        }
+
+        /* Luxury underline transition */
+        .hover-gold-line {
+            position: relative;
+        }
+        .hover-gold-line::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #C5A880;
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-gold-line:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* Parallax Background simulator */
+        .bg-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-400/20 selection:text-brand-900">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out py-6 px-6 md:px-12 flex justify-between items-center bg-transparent border-b border-transparent">
+        <a href="#" class="font-serif text-xl md:text-2xl font-semibold tracking-widest text-brand-50 transition-colors duration-500" id="navLogo">
+            CAFÉ L'AURA
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-10 text-xs font-medium tracking-widest text-brand-50" id="navMenu">
+            <a href="#story" class="hover-gold-line transition-colors duration-300">OUR STORY</a>
+            <a href="#menu" class="hover-gold-line transition-colors duration-300">SIGNATURE MENU</a>
+            <a href="#pairing" class="hover-gold-line transition-colors duration-300">MY PAIRING</a>
+            <a href="#gallery" class="hover-gold-line transition-colors duration-300">SPACE</a>
+            <a href="#reservation" class="hover-gold-line transition-colors duration-300">RESERVATION</a>
+        </div>
+
+        <!-- Socials & Call-to-action (Desktop) -->
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="https://instagram.com" target="_blank" class="text-brand-50 hover:text-brand-400 transition-colors duration-300 text-sm" id="navInsta">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#reservation" class="border border-brand-50/30 text-brand-50 hover:bg-brand-400 hover:border-brand-400 hover:text-brand-900 transition-all duration-500 px-5 py-2 text-xs tracking-widest rounded-full" id="navBtn">
+                RESERVE A SEAT
+            </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-brand-50 focus:outline-none transition-colors duration-500" aria-label="Toggle Navigation">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path id="hamburgerIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Drawer Overlay -->
+    <div id="mobileDrawer" class="fixed inset-0 bg-brand-900/95 z-40 transform translate-x-full transition-transform duration-500 ease-in-out md:hidden flex flex-col justify-center items-center space-y-8 px-6">
+        <a href="#story" class="mobile-link font-serif text-2xl text-brand-100/80 hover:text-brand-400 tracking-wider">Our Story</a>
+        <a href="#menu" class="mobile-link font-serif text-2xl text-brand-100/80 hover:text-brand-400 tracking-wider">Signature Menu</a>
+        <a href="#pairing" class="mobile-link font-serif text-2xl text-brand-100/80 hover:text-brand-400 tracking-wider">My Pairing Quiz</a>
+        <a href="#gallery" class="mobile-link font-serif text-2xl text-brand-100/80 hover:text-brand-400 tracking-wider">Space Gallery</a>
+        <a href="#reservation" class="mobile-link font-serif text-2xl text-brand-100/80 hover:text-brand-400 tracking-wider">Reservation</a>
+        <div class="h-[1px] w-24 bg-brand-400/30 my-4"></div>
+        <div class="flex space-x-6 text-brand-400 text-xl">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="far fa-envelope"></i></a>
+        </div>
+        <a href="#reservation" class="mobile-link border border-brand-400 text-brand-400 hover:bg-brand-400 hover:text-brand-900 px-8 py-3 rounded-full text-xs tracking-widest mt-4">
+            RESERVE NOW
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-900">
+        <!-- Background Image with Zooming Animation -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Café L'Aura premium mood" 
+                 class="w-full h-full object-cover opacity-50 filter brightness-75 scale-100 animate-slow-zoom"
+                 onerror="this.src='https://placehold.co/1920x1080/1c1917/ffffff?text=Premium+Cafe+Interior'">
+            <!-- Radial overlay gradient for subtle vignetting -->
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/40 to-brand-900/60"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 md:px-12 max-w-4xl mx-auto flex flex-col items-center">
+            <span class="text-brand-400 font-serif text-sm md:text-base tracking-[0.3em] uppercase mb-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                AESTHETIC COFFEE ARTLIER
+            </span>
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-6xl text-brand-50 tracking-wide leading-snug md:leading-tight mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.5s;">
+                찰나의 머무름,<br>
+                <span class="font-light italic text-brand-200">영원한 여운</span>을 남기다
+            </h1>
+            <p class="text-brand-200/80 text-xs sm:text-sm md:text-base max-w-xl font-light tracking-widest leading-relaxed mb-10 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
+                바쁜 일상에서 한 걸음 물러나, 아로마 가득한 공간 속에서 마주하는 온전한 나만의 시간. 카페 로라에서 감성 가득한 휴식을 제안합니다.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 opacity-0 animate-fade-in-up" style="animation-delay: 1.1s;">
+                <a href="#menu" class="bg-brand-400 hover:bg-brand-500 text-brand-900 font-medium tracking-widest text-xs px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-brand-900/50 hover:-translate-y-1">
+                    EXPLORE MENU
+                </a>
+                <a href="#story" class="border border-brand-50/20 hover:border-brand-400 hover:text-brand-400 text-brand-50 font-medium tracking-widest text-xs px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-1">
+                    OUR HERITAGE
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center text-brand-400/60 hover:text-brand-400 transition-colors duration-300 cursor-pointer">
+            <a href="#story" class="flex flex-col items-center">
+                <span class="text-[10px] tracking-[0.2em] uppercase mb-2">Scroll Down</span>
+                <div class="w-[1px] h-12 bg-gradient-to-b from-brand-400 to-transparent relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1/2 bg-brand-50 animate-bounce"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section id="story" class="py-24 md:py-36 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <!-- Visuals Grid (Left) -->
+        <div class="lg:col-span-6 grid grid-cols-12 gap-4 relative">
+            <div class="absolute -inset-4 border border-brand-400/20 rounded-3xl -z-10 pointer-events-none transform translate-x-3 translate-y-3"></div>
+            
+            <div class="col-span-8 overflow-hidden rounded-2xl aspect-[4/5] shadow-xl">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=1000" 
+                     alt="Premium roasting" 
+                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                     onerror="this.src='https://placehold.co/600x750/dfd1bd/1c1917?text=Espresso+Brewing'">
+            </div>
+            <div class="col-span-4 flex flex-col justify-end space-y-4">
+                <div class="overflow-hidden rounded-2xl aspect-square shadow-md">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600" 
+                         alt="Latte art close-up" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         onerror="this.src='https://placehold.co/300x300/dfd1bd/1c1917?text=Latte+Art'">
+                </div>
+                <div class="overflow-hidden rounded-2xl aspect-[3/4] shadow-md">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600" 
+                         alt="Interior seating" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         onerror="this.src='https://placehold.co/300x400/dfd1bd/1c1917?text=Aesthetic+Vibe'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Text (Right) -->
+        <div class="lg:col-span-6 flex flex-col justify-center space-y-8">
+            <div class="space-y-3">
+                <span class="text-brand-400 font-serif tracking-[0.25em] text-xs md:text-sm font-semibold uppercase block">THE ART OF COFFEE</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-900 tracking-wide leading-snug">
+                    단 한 잔을 위해<br>천천히 흘러가는 시간
+                </h2>
+            </div>
+            
+            <div class="h-[1px] w-20 bg-brand-400"></div>
+
+            <div class="text-brand-800/80 text-sm md:text-base leading-relaxed space-y-6 font-light">
+                <p>
+                    우리는 원두가 품은 고유의 대지적 기원과 날씨, 그리고 농부의 열정이 담긴 고유의 '노트(Notes)'를 존중합니다. 카페 로라는 기계적인 대량 생산을 거부하고, 고유의 미세 조절 로스팅을 통해 원두가 가진 섬세한 산미와 깊고 아늑한 달콤함을 온전히 발현해 냅니다.
+                </p>
+                <p>
+                    빛이 부드럽게 사선으로 쏟아지는 공간 디자인, 잔잔하게 흐르는 재즈 음악, 그리고 손에 잡히는 잔의 질감까지. 모든 디테일은 당신이 커피 한 모금을 입에 머금었을 때 느끼는 특별한 오감적 공명을 위해 치밀하게 연출되었습니다.
+                </p>
+            </div>
+
+            <div class="pt-4">
+                <a href="#gallery" class="inline-flex items-center space-x-3 text-brand-700 hover:text-brand-400 font-semibold tracking-wider text-xs transition-colors duration-300">
+                    <span>공간과 디테일 보기</span>
+                    <i class="fas fa-arrow-right text-[10px] transform translate-y-[1px]"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Menu Section -->
+    <section id="menu" class="py-24 bg-brand-100/60 border-y border-brand-200/50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <!-- Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-400 font-serif tracking-[0.25em] text-xs font-semibold uppercase block">L'AURA SIGNATURES</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-900 tracking-wide">시그니처 메뉴 플레이트</h2>
+                <p class="text-brand-800/60 text-xs sm:text-sm font-light leading-relaxed">
+                    바리스타와 파티셰가 매일 새벽 정성을 다해 고유의 기법으로 빚어내는 로라의 정수들을 소개합니다.
+                </p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center space-x-4 md:space-x-8 mb-12 border-b border-brand-300/40 pb-4 max-w-md mx-auto">
+                <button onclick="switchTab('coffee')" id="tabBtn-coffee" class="tab-btn active text-brand-900 border-b-2 border-brand-400 font-serif text-sm tracking-widest pb-2 px-3 focus:outline-none transition-all duration-300">
+                    Signature Coffee
+                </button>
+                <button onclick="switchTab('dessert')" id="tabBtn-dessert" class="tab-btn text-brand-800/60 hover:text-brand-900 font-serif text-sm tracking-widest pb-2 px-3 focus:outline-none transition-all duration-300">
+                    Artisanal Dessert
+                </button>
+            </div>
+
+            <!-- Tab Contents (Coffee) -->
+            <div id="tabContent-coffee" class="tab-pane grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-500">
+                <!-- Item 1 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1510970132145-8f64245607db?auto=format&fit=crop&q=80&w=600" 
+                             alt="L'Aura Cream Mocha" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Cream+Mocha'">
+                        <div class="absolute top-4 left-4 bg-brand-900/80 text-brand-400 text-[10px] tracking-widest font-semibold px-3 py-1 rounded-full uppercase">Best</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">시그니처 아우라 모카</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 8,500</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                다크 카카오 버터와 유기농 브라운 가루로 직접 졸인 시럽, 부드러운 수제 너티 생크림이 커피의 중후함과 완벽한 밀착을 이룹니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">넛티 아로마</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">다크 초콜릿</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">수제 크림</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=600" 
+                             alt="Elysian Single Origin" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Single+Origin'">
+                        <div class="absolute top-4 left-4 bg-brand-400 text-brand-900 text-[10px] tracking-widest font-semibold px-3 py-1 rounded-full uppercase">Signature</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">엘리시안 싱글 오리진</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 9,000</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                에티오피아 게샤 고지대에서 소량 엄선 수확한 원두. 자스민 향과 베리의 달콤한 산미가 마치 투명하고 화사한 차처럼 번져나갑니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">자스민 피치</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">화사한 산미</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">핸드드립</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" 
+                             alt="Smoked Oak Einspanner" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Einspanner'">
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">스모크드 오크 아인슈페너</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 8,000</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                오크나무 칩을 태워 향을 연성한 시그니처 글라스에 서브되어, 은은한 스모크 바닐라 잔향이 커피의 깊은 바디감과 함께 밀려옵니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">스모키 바닐라</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">오크 잔향</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">독특함</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Contents (Dessert) - Hidden initially -->
+            <div id="tabContent-dessert" class="tab-pane grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden transition-opacity duration-500">
+                <!-- Item 1 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" 
+                             alt="Pecan Fig Financier" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Financier'">
+                        <div class="absolute top-4 left-4 bg-brand-900/80 text-brand-400 text-[10px] tracking-widest font-semibold px-3 py-1 rounded-full uppercase">Signature</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">헤이즐넛 무화과 피낭시에</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 6,500</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                브라운 버터의 짙은 고소함에 와인에 졸여 깊은 단맛이 가미된 반건조 무화과, 구운 헤이즐넛 분태가 폭신한 식감을 이룹니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">와인 무화과</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">브라운 버터향</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">매일 베이킹</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" 
+                             alt="Matcha Pistachio Gateau" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Gateau'">
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">말차 피스타치오 가토</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 9,500</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                보성 유기농 진말차를 듬뿍 넣어 묵직하게 구워낸 가토 테린느 시트 위에 원물 100% 피스타치오 페이스트 크림을 켜켜이 올렸습니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">진한 말차</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">피스타치오 크림</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">꾸덕한 식감</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-brand-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col border border-brand-200/30 group">
+                    <div class="overflow-hidden aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" 
+                             alt="Earl Grey Honey Mille-Feuille" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.src='https://placehold.co/400x300/dfd1bd/1c1917?text=Mille-Feuille'">
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-3">
+                                <h3 class="font-serif text-lg font-bold text-brand-900">얼그레이 허니 밀푀유</h3>
+                                <span class="font-serif text-brand-700 text-sm font-semibold">₩ 11,000</span>
+                            </div>
+                            <p class="text-brand-800/70 text-xs md:text-sm font-light leading-relaxed mb-4">
+                                겹겹이 바삭하게 부서지는 페이스트리 사이로 천연 아카시아 허니 꿀방울과 화사한 얼그레이 가나슈 크림이 우아한 단맛을 연주합니다.
+                            </p>
+                        </div>
+                        <div class="border-t border-brand-200/50 pt-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">얼그레이 향</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">천연 꿀</span>
+                            <span class="text-[10px] bg-brand-200/40 text-brand-800 px-2 py-1 rounded">크리스피</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pairing Section (Sensory Matcher) -->
+    <section id="pairing" class="py-24 px-6 md:px-12 bg-brand-900 text-brand-50 relative overflow-hidden">
+        <!-- Abstract glowing orbs behind for visual sensory experience -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-brand-400/10 blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-brand-300/10 blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-16 space-y-4">
+                <span class="text-brand-400 font-serif tracking-[0.25em] text-xs font-semibold uppercase block">SENSORY INTERACTION</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-brand-50 tracking-wide">오늘 나의 향기 큐레이션</h2>
+                <p class="text-brand-200/60 text-xs sm:text-sm font-light max-w-lg mx-auto leading-relaxed">
+                    지금 이 순간, 당신의 기분과 어울리는 향을 미세 매칭합니다. 세 가지 선택만으로 가장 조화로운 로라의 페어링 레시피를 만나보세요.
+                </p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="bg-brand-800/40 border border-brand-400/20 rounded-3xl p-6 md:p-12 shadow-2xl backdrop-blur-sm max-w-2xl mx-auto">
+                <div id="quiz-flow">
+                    <!-- Step 1: Mood Selection -->
+                    <div id="quiz-step-1" class="quiz-step space-y-8">
+                        <div class="text-center">
+                            <span class="text-xs text-brand-400 font-mono">01 / 03</span>
+                            <h3 class="font-serif text-xl text-brand-100 mt-2">지금 나의 상태는 무엇에 가장 가깝나요?</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onclick="selectAnswer(1, 'calm')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-feather"></i></span>
+                                <span class="text-sm font-medium">잔잔한 휴식</span>
+                            </button>
+                            <button onclick="selectAnswer(1, 'focus')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-brain"></i></span>
+                                <span class="text-sm font-medium">지적인 몰입</span>
+                            </button>
+                            <button onclick="selectAnswer(1, 'sweet')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-heart"></i></span>
+                                <span class="text-sm font-medium">달콤한 생기</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Flavor Preference (Hidden) -->
+                    <div id="quiz-step-2" class="quiz-step space-y-8 hidden">
+                        <div class="text-center">
+                            <span class="text-xs text-brand-400 font-mono">02 / 03</span>
+                            <h3 class="font-serif text-xl text-brand-100 mt-2">입안 가득 즐기고 싶은 첫 노트는?</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onclick="selectAnswer(2, 'acidic')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-lemon"></i></span>
+                                <span class="text-sm font-medium">싱그러운 과일 산미</span>
+                            </button>
+                            <button onclick="selectAnswer(2, 'heavy')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-coffee"></i></span>
+                                <span class="text-sm font-medium">깊고 진한 묵직함</span>
+                            </button>
+                            <button onclick="selectAnswer(2, 'creamy')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-cookie"></i></span>
+                                <span class="text-sm font-medium">우아하고 부드러운 단맛</span>
+                            </button>
+                        </div>
+                        <button onclick="prevStep(1)" class="mx-auto block text-xs text-brand-400 hover:underline"><i class="fas fa-arrow-left mr-1"></i> 이전 단계로</button>
+                    </div>
+
+                    <!-- Step 3: Space Vibe (Hidden) -->
+                    <div id="quiz-step-3" class="quiz-step space-y-8 hidden">
+                        <div class="text-center">
+                            <span class="text-xs text-brand-400 font-mono">03 / 03</span>
+                            <h3 class="font-serif text-xl text-brand-100 mt-2">지금 가장 머물고 싶은 자리는?</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onclick="selectAnswer(3, 'window')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-cloud-sun"></i></span>
+                                <span class="text-sm font-medium">빛이 잘 드는 창가석</span>
+                            </button>
+                            <button onclick="selectAnswer(3, 'bar')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-mortar-pestle"></i></span>
+                                <span class="text-sm font-medium">에스프레소 바 아틀리에</span>
+                            </button>
+                            <button onclick="selectAnswer(3, 'sofa')" class="p-6 rounded-xl border border-brand-400/20 bg-brand-900/40 hover:border-brand-400 hover:bg-brand-900 transition-all duration-300 flex flex-col items-center justify-center space-y-3 group">
+                                <span class="text-2xl text-brand-400 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-couch"></i></span>
+                                <span class="text-sm font-medium">안온하고 아늑한 구석 소파</span>
+                            </button>
+                        </div>
+                        <button onclick="prevStep(2)" class="mx-auto block text-xs text-brand-400 hover:underline"><i class="fas fa-arrow-left mr-1"></i> 이전 단계로</button>
+                    </div>
+
+                    <!-- Loading Step (Hidden) -->
+                    <div id="quiz-loading" class="quiz-step text-center space-y-6 py-12 hidden">
+                        <div class="relative w-16 h-16 mx-auto">
+                            <div class="absolute inset-0 border-4 border-brand-400/20 rounded-full"></div>
+                            <div class="absolute inset-0 border-4 border-brand-400 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <p class="font-serif text-brand-400 text-sm tracking-widest animate-pulse">오늘 당신의 깊이를 감미롭게 분석 중입니다...</p>
+                    </div>
+
+                    <!-- Result Step (Hidden) -->
+                    <div id="quiz-result" class="quiz-step space-y-8 hidden">
+                        <div class="text-center">
+                            <span class="text-brand-400 text-xs font-serif tracking-[0.2em] uppercase">Your Customized Pairing</span>
+                            <h3 class="font-serif text-2xl text-brand-50 mt-2">당신을 위한 최상의 감성 플레이트</h3>
+                        </div>
+                        
+                        <!-- Recommendation Visual block -->
+                        <div class="bg-brand-900/50 border border-brand-400/30 p-6 rounded-2xl flex flex-col sm:flex-row items-center gap-6">
+                            <div class="w-full sm:w-1/3 aspect-square overflow-hidden rounded-xl">
+                                <img id="result-img" src="" alt="Pairing Image" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/dfd1bd/1c1917?text=Recommended+Pairing'">
+                            </div>
+                            <div class="w-full sm:w-2/3 space-y-4">
+                                <div>
+                                    <span class="text-[10px] text-brand-400 font-mono tracking-widest block uppercase">Signature Pairing</span>
+                                    <h4 id="result-title" class="font-serif text-lg font-bold text-brand-100 mt-1"></h4>
+                                </div>
+                                <p id="result-desc" class="text-brand-200/80 text-xs md:text-sm font-light leading-relaxed"></p>
+                                <div class="bg-brand-50/5 border-l-2 border-brand-400 p-3 rounded-r-md">
+                                    <span class="text-[10px] text-brand-400 block tracking-wider uppercase font-semibold"><i class="fas fa-wine-glass-alt mr-1"></i> Sensory Guide</span>
+                                    <p id="result-guide" class="text-xs text-brand-100/70 italic mt-1"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="resetQuiz()" class="text-xs border border-brand-400/30 hover:border-brand-400 hover:text-brand-400 px-6 py-3 rounded-full tracking-widest transition-all duration-300">
+                                <i class="fas fa-redo-alt mr-2"></i> 다시 매칭하기
+                            </button>
+                            <a href="#reservation" class="text-xs bg-brand-400 hover:bg-brand-500 text-brand-900 font-semibold px-6 py-3 rounded-full tracking-widest transition-all duration-300 text-center">
+                                이 무드로 좌석 예약하기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span class="text-brand-400 font-serif tracking-[0.25em] text-xs font-semibold uppercase block">VISUAL ATMOSPHERE</span>
+            <h2 class="font-serif text-3xl md:text-4xl text-brand-900 tracking-wide">빛과 그림자가 머무는 아늑한 공간</h2>
+            <p class="text-brand-800/60 text-xs sm:text-sm font-light leading-relaxed">
+                로라는 조용히 혼자만의 상념에 잠기는 순간부터 소중한 사람과 깊은 대화를 나누는 공간까지 모든 시적인 장면들을 고스란히 품고 있습니다.
+            </p>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Col 1 -->
+            <div class="space-y-6">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-[3/4]" onclick="openLightbox('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600" alt="Cafe light window" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Zone 01</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">따스하게 내리는 창가석</h4>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-square" onclick="openLightbox('https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&q=80&w=600" alt="Espresso details" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Detail 01</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">로라 에스프레소 추출</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="space-y-6 lg:translate-y-8">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-square" onclick="openLightbox('https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&q=80&w=600" alt="Espresso bar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Zone 02</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">소통의 깊이를 더하는 Bar</h4>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-[3/4]" onclick="openLightbox('https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&q=80&w=600" alt="Cozy corners" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Zone 03</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">서가 옆 아늑한 쇼파 코너</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="space-y-6">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-[3/4]" onclick="openLightbox('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600" alt="Cafe aesthetic vibe" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Space 01</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">모던 프리미엄 다이닝 구조</h4>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-square" onclick="openLightbox('https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Latte art visual" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Detail 02</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">마음을 잇는 따뜻한 온기</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="space-y-6 lg:translate-y-8">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-square" onclick="openLightbox('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&q=80&w=600" alt="Roastery equipment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Atelier</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">로스팅 하우스 랩실</h4>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md aspect-[3/4]" onclick="openLightbox('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=1000')">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=600" alt="Coffee pouring premium" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                        <span class="text-brand-400 text-[10px] tracking-widest font-serif uppercase">Sensory</span>
+                        <h4 class="font-serif text-brand-50 text-base font-medium">정교하게 피어나는 푸어오버</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox for Gallery Preview -->
+    <div id="lightbox" class="fixed inset-0 bg-brand-900/95 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-500">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-brand-50 hover:text-brand-400 text-2xl focus:outline-none transition-colors duration-300" aria-label="Close Lightbox">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="max-w-4xl max-h-[85vh] overflow-hidden rounded-lg shadow-2xl">
+            <img id="lightboxImg" src="" alt="Enlarged gallery view" class="w-full h-full object-contain">
+        </div>
+    </div>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-24 bg-brand-100/60 border-t border-brand-200/50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+            
+            <!-- Reservation info (Left) -->
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-8 py-4">
+                <div class="space-y-6">
+                    <span class="text-brand-400 font-serif tracking-[0.25em] text-xs font-semibold uppercase block">PREMIUM RESERVATION</span>
+                    <h2 class="font-serif text-3xl md:text-4xl text-brand-900 tracking-wide">공간 속의 시간 예약</h2>
+                    <p class="text-brand-800/70 text-sm font-light leading-relaxed">
+                        복잡한 도심 한가운데에서 아늑한 사유를 영유할 수 있도록, 카페 로라의 엄선된 전용 아틀리에 좌석과 원데이 향 시음회(Cupping) 프로그램을 제한적으로 선점하실 수 있습니다.
+                    </p>
+                </div>
+
+                <!-- Card Info details -->
+                <div class="bg-brand-50 border border-brand-200 p-6 rounded-2xl space-y-4 shadow-sm">
+                    <div class="flex items-start space-x-4">
+                        <span class="text-brand-400 text-lg mt-1"><i class="far fa-clock"></i></span>
+                        <div>
+                            <h4 class="font-serif text-sm font-bold text-brand-900">운영 시간 및 정보</h4>
+                            <p class="text-brand-800/60 text-xs mt-1 leading-relaxed">매일 10:00 - 22:00 (Last Order 21:30)</p>
+                            <p class="text-brand-800/60 text-xs leading-relaxed">매주 화요일은 로스팅 아틀리에 점검일입니다.</p>
+                        </div>
+                    </div>
+                    <div class="h-[1px] bg-brand-200/50"></div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-brand-400 text-lg mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                        <div>
+                            <h4 class="font-serif text-sm font-bold text-brand-900">아틀리에 오시는 길</h4>
+                            <p class="text-brand-800/60 text-xs mt-1 leading-relaxed">서울 종로구 삼청로 12길, 4층 아우라 메종</p>
+                            <p class="text-brand-800/60 text-xs leading-relaxed">무료 전용 발레파킹 지원 (2시간 무료)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-brand-800/50 text-xs italic">
+                    * 당일 예약은 유선 및 인스타그램 DM을 통해서만 잔여 공석 발생 시 즉시 가능합니다.
+                </p>
+            </div>
+
+            <!-- Reservation form (Right) -->
+            <div class="lg:col-span-7 bg-brand-50 p-8 md:p-12 rounded-3xl border border-brand-200 shadow-lg">
+                <h3 class="font-serif text-2xl text-brand-900 mb-8 font-semibold text-center sm:text-left">비밀스러운 찻자리 신청</h3>
+                
+                <form id="resForm" onsubmit="handleReserve(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="resName" class="text-xs text-brand-800 font-semibold tracking-wider">예약자 성함 *</label>
+                            <input type="text" id="resName" required placeholder="홍길동" class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="resPhone" class="text-xs text-brand-800 font-semibold tracking-wider">연락처 *</label>
+                            <input type="tel" id="resPhone" required placeholder="010-0000-0000" class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label for="resDate" class="text-xs text-brand-800 font-semibold tracking-wider">예약 일자 *</label>
+                            <input type="date" id="resDate" required class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="resTime" class="text-xs text-brand-800 font-semibold tracking-wider">시간 설정 *</label>
+                            <select id="resTime" required class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                                <option value="" disabled selected>선택해주세요</option>
+                                <option value="11:00">11:00 (오전 첫 타임)</option>
+                                <option value="13:30">13:30 (따스한 정오)</option>
+                                <option value="15:30">15:30 (여유로운 낮)</option>
+                                <option value="18:00">18:00 (노을빛 저녁)</option>
+                                <option value="20:00">20:00 (깊은 감성의 밤)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="resGuests" class="text-xs text-brand-800 font-semibold tracking-wider">방문 인원 *</label>
+                            <select id="resGuests" required class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                                <option value="" disabled selected>선택해주세요</option>
+                                <option value="1">1인 (혼자만의 평화)</option>
+                                <option value="2">2인 (깊은 교감)</option>
+                                <option value="3">3~4인 (소규모 친목)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="resSeatType" class="text-xs text-brand-800 font-semibold tracking-wider">체험 및 좌석 옵션 *</label>
+                        <select id="resSeatType" required class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300">
+                            <option value="" disabled selected>선택해주세요</option>
+                            <option value="window_tea">햇살 가득 창가 라운지 테이블</option>
+                            <option value="bar_talk">바리스타 라이브 커핑 시음회 바석 (1인당 10,000원 선입금)</option>
+                            <option value="sofa_comfort">조용한 사유를 위한 프라이빗 라이브러리 코너</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="resMemo" class="text-xs text-brand-800 font-semibold tracking-wider">추가 요청 사항</label>
+                        <textarea id="resMemo" rows="3" placeholder="기념일 여부 또는 특별히 알레르기가 있는 식품이 있으시면 기재해 주세요." class="w-full bg-brand-100/30 border border-brand-300 focus:border-brand-400 rounded-xl px-4 py-3 text-sm font-light text-brand-900 focus:outline-none transition-colors duration-300"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-brand-400 font-serif font-semibold tracking-[0.2em] text-xs py-4 rounded-xl transition-all duration-300 shadow-md">
+                        RESERVATION REQUEST
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Feedback Overlay Modal (Never use window.alert!) -->
+    <div id="alertModal" class="fixed inset-0 bg-brand-900/80 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-brand-50 border border-brand-400/30 p-8 rounded-2xl max-w-md w-full text-center space-y-6 shadow-2xl">
+            <div class="w-16 h-16 bg-brand-400/10 text-brand-400 flex items-center justify-center rounded-full mx-auto text-2xl">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="font-serif text-xl font-bold text-brand-900">예약 요청서 접수 완료</h3>
+                <p class="text-brand-800/70 text-sm font-light leading-relaxed">
+                    카페 로라를 선택해 주셔서 대단히 감사드립니다. 남겨주신 연락처로 예약 컨펌 문자 및 가이드를 신속히 발송해 드리겠습니다.
+                </p>
+            </div>
+            <button onclick="closeAlert()" class="w-full bg-brand-900 hover:bg-brand-800 text-brand-400 font-serif text-xs font-semibold py-3 rounded-xl tracking-widest transition-colors duration-300">
+                확인
+            </button>
+        </div>
+    </div>
+
+    <!-- Brand Reviews / Whisper Section -->
+    <section class="py-24 bg-brand-900 text-brand-50 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-center space-y-12">
+            <span class="text-brand-400 font-serif tracking-[0.2em] text-xs font-semibold uppercase block">WHISPERS OF L'AURA</span>
+            
+            <!-- Simple Carousel Container -->
+            <div class="relative min-h-[220px]">
+                <!-- Review 1 -->
+                <div id="review-1" class="review-slide space-y-6 transition-all duration-500 transform">
+                    <p class="font-serif text-lg md:text-2xl font-light italic leading-relaxed text-brand-200">
+                        "이곳의 창가 자리에서 바라보는 가을 노을과 따뜻한 아인슈페너 한 모금은 복잡했던 저의 한 주를 정갈하게 정돈해 주는 깊은 위로의 의식이었습니다."
+                    </p>
+                    <div class="space-y-1">
+                        <h4 class="font-medium text-xs tracking-widest text-brand-400">서주영 님 / 푸디 저널리스트</h4>
+                        <div class="text-[10px] text-brand-300/40"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+
+                <!-- Review 2 (Hidden) -->
+                <div id="review-2" class="review-slide space-y-6 transition-all duration-500 transform hidden opacity-0">
+                    <p class="font-serif text-lg md:text-2xl font-light italic leading-relaxed text-brand-200">
+                        "엘리시안 싱글 오리진을 한 입 머금었을 때 느껴진 정교한 자스민 꽃 향은 제 인생에서 잊지 못할 가장 시적이고 풍부한 커피 경험 중 하나였습니다."
+                    </p>
+                    <div class="space-y-1">
+                        <h4 class="font-medium text-xs tracking-widest text-brand-400">민하엘 님 / 공간 사진작가</h4>
+                        <div class="text-[10px] text-brand-300/40"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+
+                <!-- Review 3 (Hidden) -->
+                <div id="review-3" class="review-slide space-y-6 transition-all duration-500 transform hidden opacity-0">
+                    <p class="font-serif text-lg md:text-2xl font-light italic leading-relaxed text-brand-200">
+                        "나무 향과 잔잔히 흐르는 오케스트라 사운드, 그리고 감각적인 조명이 이루는 연출은 마치 삼청동 골목에 숨겨진 비밀 성소와도 같은 안온함을 줍니다."
+                    </p>
+                    <div class="space-y-1">
+                        <h4 class="font-medium text-xs tracking-widest text-brand-400">John Kim / 건축 디자이너</h4>
+                        <div class="text-[10px] text-brand-300/40"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dot Indicators -->
+            <div class="flex justify-center space-x-3">
+                <button onclick="gotoReview(1)" id="dot-1" class="w-2 h-2 rounded-full bg-brand-400 transition-all duration-300" aria-label="Review 1"></button>
+                <button onclick="gotoReview(2)" id="dot-2" class="w-2 h-2 rounded-full bg-brand-50/20 hover:bg-brand-400/50 transition-all duration-300" aria-label="Review 2"></button>
+                <button onclick="gotoReview(3)" id="dot-3" class="w-2 h-2 rounded-full bg-brand-50/20 hover:bg-brand-400/50 transition-all duration-300" aria-label="Review 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#141211] text-brand-100 py-16 px-6 md:px-12 border-t border-brand-800/50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <!-- Brand Column -->
+            <div class="md:col-span-1 space-y-4">
+                <a href="#" class="font-serif text-2xl font-semibold tracking-widest text-brand-400 block">
+                    CAFÉ L'AURA
+                </a>
+                <p class="text-brand-300/60 text-xs font-light leading-relaxed">
+                    프리미엄 감성 커피 아틀리에 카페 로라.<br>
+                    공간과 음료, 그리고 분위기가 자아내는 완전한 조화를 추구하며 일상 속에 차분하고 우아한 여운을 선물합니다.
+                </p>
+            </div>
+
+            <!-- Links Column -->
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-semibold tracking-wider text-brand-400">NAVIGATION</h4>
+                <ul class="space-y-2 text-xs font-light text-brand-300/70">
+                    <li><a href="#story" class="hover:text-brand-400 transition-colors duration-300">Our Heritage Story</a></li>
+                    <li><a href="#menu" class="hover:text-brand-400 transition-colors duration-300">Signature Menu Plate</a></li>
+                    <li><a href="#pairing" class="hover:text-brand-400 transition-colors duration-300">My Coffee Matching Quiz</a></li>
+                    <li><a href="#gallery" class="hover:text-brand-400 transition-colors duration-300">Space Gallery Zone</a></li>
+                    <li><a href="#reservation" class="hover:text-brand-400 transition-colors duration-300">Online Table Reservation</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-semibold tracking-wider text-brand-400">CONTACT & LOCATION</h4>
+                <p class="text-xs font-light text-brand-300/70 leading-relaxed">
+                    T. +82 (0)2-720-2026<br>
+                    E. contact@cafel_aura.com<br>
+                    서울 종로구 삼청로 12길, 4층 아우라 메종
+                </p>
+                <div class="flex space-x-4 text-brand-300/50 pt-2">
+                    <a href="#" class="hover:text-brand-400 text-lg transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-brand-400 text-lg transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-brand-400 text-lg transition-colors"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Newsletter/Membership Column -->
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-semibold tracking-wider text-brand-400">L'AURA NEWSLETTER</h4>
+                <p class="text-brand-300/60 text-xs font-light leading-relaxed">
+                    신메뉴 출시, 소규모 프라이빗 커핑 이벤트 초청장 등 카페 로라의 격조 높은 소식들을 메일로 가장 먼저 받아보세요.
+                </p>
+                <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" id="subEmail" required placeholder="이메일 주소" class="bg-brand-900 border border-brand-800 focus:border-brand-400 focus:outline-none rounded-xl px-4 py-2.5 text-xs text-brand-100 flex-grow">
+                    <button type="submit" class="bg-brand-400 hover:bg-brand-500 text-brand-900 text-xs tracking-wider font-semibold py-2.5 px-4 rounded-xl transition-colors duration-300">
+                        구독
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto h-[1px] bg-brand-800/50 my-12"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-brand-300/40">
+            <p>© 2026 CAFÉ L'AURA. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-brand-400">이용약관</a>
+                <a href="#" class="hover:text-brand-400">개인정보처리방침</a>
+                <a href="#" class="hover:text-brand-400">이메일무단수집거부</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        // 1. Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('navLogo');
+        const navMenu = document.getElementById('navMenu');
+        const navInsta = document.getElementById('navInsta');
+        const navBtn = document.getElementById('navBtn');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-50/95', 'backdrop-blur-md', 'shadow-md', 'border-brand-200/50', 'py-4');
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+                
+                navLogo.classList.remove('text-brand-50');
+                navLogo.classList.add('text-brand-900');
+                
+                navMenu.classList.remove('text-brand-50');
+                navMenu.classList.add('text-brand-800');
+                
+                navInsta.classList.remove('text-brand-50');
+                navInsta.classList.add('text-brand-800');
+                
+                navBtn.classList.remove('text-brand-50', 'border-brand-50/30');
+                navBtn.classList.add('text-brand-900', 'border-brand-900/30', 'hover:border-brand-400');
+                
+                mobileMenuBtn.classList.remove('text-brand-50');
+                mobileMenuBtn.classList.add('text-brand-900');
+            } else {
+                navbar.classList.remove('bg-brand-50/95', 'backdrop-blur-md', 'shadow-md', 'border-brand-200/50', 'py-4');
+                navbar.classList.add('bg-transparent', 'border-transparent', 'py-6');
+                
+                navLogo.classList.add('text-brand-50');
+                navLogo.classList.remove('text-brand-900');
+                
+                navMenu.classList.add('text-brand-50');
+                navMenu.classList.remove('text-brand-800');
+                
+                navInsta.classList.add('text-brand-50');
+                navInsta.classList.remove('text-brand-800');
+                
+                navBtn.classList.add('text-brand-50', 'border-brand-50/30');
+                navBtn.classList.remove('text-brand-900', 'border-brand-900/30', 'hover:border-brand-400');
+                
+                mobileMenuBtn.classList.add('text-brand-50');
+                mobileMenuBtn.classList.remove('text-brand-900');
+            }
+        });
+
+        // 2. Mobile Drawer Navigation Toggle
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        let isDrawerOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isDrawerOpen = !isDrawerOpen;
+            if (isDrawerOpen) {
+                mobileDrawer.classList.remove('translate-x-full');
+                hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                mobileDrawer.classList.add('translate-x-full');
+                hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        });
+
+        // Close drawer on clicking mobile links
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('translate-x-full');
+                hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                isDrawerOpen = false;
+            });
+        });
+
+        // 3. Tab System (Menu Section)
+        function switchTab(tabId) {
+            // Hide all panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.add('hidden'));
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'text-brand-900', 'border-b-2', 'border-brand-400');
+                btn.classList.add('text-brand-800/60');
+            });
+
+            // Show current active tab with smooth fade-in
+            const activePane = document.getElementById(`tabContent-${tabId}`);
+            activePane.classList.remove('hidden');
+            activePane.style.opacity = '0';
+            setTimeout(() => {
+                activePane.style.opacity = '1';
+            }, 50);
+
+            // Activate current button
+            const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+            activeBtn.classList.add('active', 'text-brand-900', 'border-b-2', 'border-brand-400');
+            activeBtn.classList.remove('text-brand-800/60');
+        }
+
+        // 4. Interactive Sensory Pairing Quiz Logic
+        let quizState = {
+            step1: '',
+            step2: '',
+            step3: ''
+        };
+
+        const matchingDatabase = {
+            'calm_acidic_window': {
+                title: '엘리시안 싱글 오리진 & 허니 밀푀유',
+                desc: '자스민 꽃과 달콤한 피치 노트를 자랑하는 싱글 오리진 커피와, 크리스피하게 겹겹이 흘러내리는 꿀방울 밀푀유의 우아한 마リアージュ. 따스한 창가 햇살 아래에서 한 스푼 머금을 때 완벽한 영감을 줍니다.',
+                guide: '피치와 꿀의 달콤함이 만나 복합적인 아카시아 아로마가 배가됩니다.',
+                img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600'
+            },
+            'calm_heavy_sofa': {
+                title: '스모크드 오크 아인슈페너 & 피낭시에',
+                desc: '아우라의 은은한 오크 나무 칩 잔향이 베인 시그니처 글라스로 전개되는 부드러운 아인슈페너와 헤이즐넛 무화과 피낭시에의 조합. 깊숙한 소파 자리에 누려 감상에 집중하기 좋은 심리적 피에스타를 제공합니다.',
+                guide: '스모키한 오크 바디 향이 구운 무화과의 버터 풍미를 고조시켜 줍니다.',
+                img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600'
+            },
+            'focus_heavy_bar': {
+                title: '엘리시안 더블 에스프레소 & 가토 쇼콜라 테린느',
+                desc: '높은 바디감의 싱글 에스프레소를 바에 앉아 쌉싸름하게 음미하고 꾸덕한 녹차 피스타치오 가토와 번갈아 테이스팅하는 몰입 전용 플레이팅. 뇌의 집중도를 일깨우며 미적인 자극을 전달합니다.',
+                guide: '강렬한 다크 초콜릿의 산미가 피스타치오 고유의 밀키함을 깔끔히 정돈합니다.',
+                img: 'https://images.unsplash.com/photo-1510970132145-8f64245607db?auto=format&fit=crop&q=80&w=600'
+            },
+            // Fallback default pairing if combination dynamic doesn't map directly
+            'default': {
+                title: '시그니처 아우라 모카 & 피스타치오 가토',
+                desc: '카카오 본래의 묵직한 카카오 버터 시럽을 녹여낸 로라의 시그니처 모카 음료와 꾸덕하고 짙은 말차 피스타치오 가토 세트. 어떤 기분이든 기품 있는 달콤함과 온기로 오감을 충족시켜 줍니다.',
+                guide: '쌉싸름한 가토의 피스타치오 질감과 모카 크림의 우아한 조화.',
+                img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600'
+            }
+        };
+
+        function selectAnswer(stepNum, val) {
+            quizState[`step${stepNum}`] = val;
+            
+            if (stepNum === 1) {
+                transitionStep(1, 2);
+            } else if (stepNum === 2) {
+                transitionStep(2, 3);
+            } else if (stepNum === 3) {
+                calculateResult();
+            }
+        }
+
+        function transitionStep(from, to) {
+            const currentStep = document.getElementById(`quiz-step-${from}`);
+            const nextStep = document.getElementById(`quiz-step-${to}`);
+            
+            currentStep.classList.add('hidden');
+            nextStep.classList.remove('hidden');
+        }
+
+        function prevStep(toStep) {
+            // Find currently active step
+            const steps = document.querySelectorAll('.quiz-step');
+            steps.forEach(s => s.classList.add('hidden'));
+            
+            document.getElementById(`quiz-step-${toStep}`).classList.remove('hidden');
+        }
+
+        function calculateResult() {
+            // Show loader
+            document.getElementById('quiz-step-3').classList.add('hidden');
+            const loader = document.getElementById('quiz-loading');
+            loader.classList.remove('hidden');
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                
+                // Form key
+                const key = `${quizState.step1}_${quizState.step2}_${quizState.step3}`;
+                const matched = matchingDatabase[key] || matchingDatabase['default'];
+                
+                // Update DOM
+                document.getElementById('result-title').innerText = matched.title;
+                document.getElementById('result-desc').innerText = matched.desc;
+                document.getElementById('result-guide').innerText = matched.guide;
+                document.getElementById('result-img').src = matched.img;
+                
+                // Show result container
+                document.getElementById('quiz-result').classList.remove('hidden');
+            }, 1800);
+        }
+
+        function resetQuiz() {
+            quizState = { step1: '', step2: '', step3: '' };
+            
+            // Hide result
+            document.getElementById('quiz-result').classList.add('hidden');
+            // Show step 1
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+        }
+
+        // 5. Reservation Handling Logic (Custom Popups, No native Alert)
+        const alertModal = document.getElementById('alertModal');
+
+        function handleReserve(event) {
+            event.preventDefault();
+            
+            // Collect Form Values just in case we send it or validate
+            const name = document.getElementById('resName').value;
+            const phone = document.getElementById('resPhone').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const guests = document.getElementById('resGuests').value;
+            const seat = document.getElementById('resSeatType').value;
+            
+            // Perform simulated network action
+            // Show beautiful alert modal
+            alertModal.classList.remove('hidden');
+            setTimeout(() => {
+                alertModal.classList.add('opacity-100');
+            }, 50);
+        }
+
+        function closeAlert() {
+            alertModal.classList.remove('opacity-100');
+            setTimeout(() => {
+                alertModal.classList.add('hidden');
+                // Reset form
+                document.getElementById('resForm').reset();
+            }, 300);
+        }
+
+        // Newsletter subscription handling
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const email = document.getElementById('subEmail').value;
+            
+            // Change UI text within subscription modal
+            const subscribeAlert = document.createElement('div');
+            subscribeAlert.className = "fixed bottom-6 right-6 bg-brand-900 border border-brand-400 text-brand-400 px-6 py-4 rounded-xl shadow-2xl text-xs font-serif tracking-wider z-50 transition-all duration-500 transform translate-y-12 opacity-0";
+            subscribeAlert.innerHTML = `<i class="far fa-paper-plane mr-2"></i> ${email} 주소가 구독 성공 리스트에 추가되었습니다.`;
+            document.body.appendChild(subscribeAlert);
+            
+            setTimeout(() => {
+                subscribeAlert.classList.remove('translate-y-12', 'opacity-0');
+            }, 100);
+
+            setTimeout(() => {
+                subscribeAlert.classList.add('translate-y-12', 'opacity-0');
+                setTimeout(() => {
+                    subscribeAlert.remove();
+                }, 500);
+            }, 4000);
+
+            document.getElementById('subEmail').value = '';
+        }
+
+        // 6. Gallery Lightbox system
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(imgSrc) {
+            lightboxImg.src = imgSrc;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.add('opacity-100');
+            }, 50);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('opacity-100');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 500);
+        }
+
+        // 7. Testimonial Carousel Slideshow
+        let currentReview = 1;
+        const totalReviews = 3;
+
+        function gotoReview(index) {
+            // Hide all slides
+            for (let i = 1; i <= totalReviews; i++) {
+                const slide = document.getElementById(`review-${i}`);
+                slide.classList.add('hidden', 'opacity-0');
+                
+                const dot = document.getElementById(`dot-${i}`);
+                dot.classList.remove('bg-brand-400');
+                dot.classList.add('bg-brand-50/20');
+            }
+
+            // Show current active slide
+            const activeSlide = document.getElementById(`review-${index}`);
+            activeSlide.classList.remove('hidden');
+            setTimeout(() => {
+                activeSlide.classList.remove('opacity-0');
+            }, 50);
+
+            const activeDot = document.getElementById(`dot-${index}`);
+            activeDot.classList.add('bg-brand-400');
+            activeDot.classList.remove('bg-brand-50/20');
+            
+            currentReview = index;
+        }
+
+        // Auto transition testimonials
+        setInterval(() => {
+            let next = currentReview + 1;
+            if (next > totalReviews) next = 1;
+            gotoReview(next);
+        }, 8000);
+
+        // Auto set Minimum Date on Reservation Input to Today
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('resDate').setAttribute('min', today);
+        }
+    </script>
+</body>
+</html>
